@@ -1,13 +1,15 @@
 package com.devoxx.tia.jmh;
 
-import org.openjdk.jmh.annotations.Benchmark;
-import org.openjdk.jmh.annotations.Param;
-import org.openjdk.jmh.annotations.Scope;
-import org.openjdk.jmh.annotations.State;
+import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.infra.Blackhole;
+import org.openjdk.jmh.runner.Runner;
+import org.openjdk.jmh.runner.RunnerException;
+import org.openjdk.jmh.runner.options.Options;
+import org.openjdk.jmh.runner.options.OptionsBuilder;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 @State(Scope.Benchmark)
 public class ProfilerDemoBench {
@@ -37,6 +39,21 @@ public class ProfilerDemoBench {
         long id = Thread.currentThread().getId();
 
         doSomething(id);
+    }
+
+    public static void main(String[] args) throws RunnerException {
+        Options opt = new OptionsBuilder()
+                .mode(Mode.AverageTime)
+                .timeUnit(TimeUnit.SECONDS)
+                .warmupIterations(0)
+                .measurementIterations(1)
+//                .measurementTime(TimeValue.seconds(1))
+                .forks(1)
+//                .shouldFailOnError(true)
+//                .shouldDoGC(true)
+                .build();
+
+        new Runner(opt).run();
     }
 
 }

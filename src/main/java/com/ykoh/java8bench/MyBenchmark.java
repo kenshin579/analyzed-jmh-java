@@ -29,7 +29,7 @@
  * THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package org.sample;
+package com.ykoh.java8bench;
 
 import org.openjdk.jmh.Main;
 

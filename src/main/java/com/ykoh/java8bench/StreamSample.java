@@ -1,4 +1,4 @@
-package org.sample;
+package com.ykoh.java8bench;
 
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.BenchmarkMode;
